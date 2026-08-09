@@ -1,0 +1,17 @@
+rules_version = '2';
+
+// Uploads happen server-side via the Firebase Admin SDK (which bypasses
+// these rules), so client-side write access is always denied here.
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /projects/{fileName} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /posts/{fileName} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

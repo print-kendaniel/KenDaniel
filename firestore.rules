@@ -1,0 +1,23 @@
+rules_version = '2';
+
+// All writes in this app go through server-side Route Handlers using the
+// Firebase Admin SDK, which is not subject to these rules. Client-side
+// writes are therefore always denied here; only read access is scoped.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /projects/{projectId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /posts/{postId} {
+      allow read: if resource.data.published == true;
+      allow write: if false;
+    }
+
+    match /messages/{messageId} {
+      allow read: if false;
+      allow write: if false;
+    }
+  }
+}

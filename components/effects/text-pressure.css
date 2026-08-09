@@ -1,0 +1,27 @@
+/*
+ * Scoped names (not the ported source's bare `.flex`/`.stroke`) — this file is a
+ * plain unlayered stylesheet, and Tailwind v4 wraps its own utilities in
+ * `@layer utilities`. Per the CSS cascade, layered rules always lose to
+ * unlayered ones regardless of source order, so a bare `.flex{justify-content:
+ * space-between}` here would have silently overridden Tailwind's `.flex`
+ * utility (used everywhere in this codebase) site-wide.
+ */
+.text-pressure-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-pressure-stroke span {
+  position: relative;
+}
+
+.text-pressure-stroke span::after {
+  content: attr(data-char);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: transparent;
+  z-index: -1;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: var(--tp-stroke-color, #fff);
+}
