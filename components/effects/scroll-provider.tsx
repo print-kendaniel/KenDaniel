@@ -27,7 +27,16 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const lenis = new Lenis({ smoothWheel: true });
+    const lenis = new Lenis({
+      duration: 1.15,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.5,
+      lerp: 0.1,
+      syncTouch: true,
+      syncTouchLerp: 0.075,
+    });
     lenisRef.current = lenis;
 
     let rafId: number;

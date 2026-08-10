@@ -14,7 +14,6 @@ import { ContactModal } from "@/components/contact/contact-modal";
 import { PageTransition } from "@/components/effects/page-transition";
 import { MagneticCursorProvider } from "@/components/effects/magnetic-cursor-provider";
 import { UiSoundProvider } from "@/components/effects/ui-sound-provider";
-import { GrainOverlay } from "@/components/effects/grain-overlay";
 import { SvgFilters } from "@/components/effects/svg-filters";
 import { SoundToggle } from "@/components/ui/sound-toggle";
 import { SiteDock } from "@/components/layout/site-dock";
@@ -75,7 +74,6 @@ export default function RootLayout({
               <UiSoundProvider>
                 <MagneticCursorProvider>
                   <SvgFilters />
-                  <GrainOverlay />
                   <AdaptiveGrid />
                   <PageLoader />
                   <div className="flex min-h-screen flex-col">
