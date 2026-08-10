@@ -23,7 +23,11 @@ const FRAGMENT_SHADER = `
   void main() {
     vec2 uv = gl_FragCoord.xy;
     float noise = hash(uv + uTime);
-    gl_FragColor = vec4(vec3(noise), 0.05);
+    // Premultiplied output (rgb already scaled by alpha) — non-premultiplied
+    // alpha canvases (the old approach here) composite inconsistently on
+    // Safari, rendering far more opaque than the alpha value implies.
+    float alpha = 0.05;
+    gl_FragColor = vec4(vec3(noise) * alpha, alpha);
   }
 `;
 
@@ -53,7 +57,7 @@ export function GrainOverlay() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const gl = canvas.getContext("webgl", { alpha: true, premultipliedAlpha: false });
+    const gl = canvas.getContext("webgl", { alpha: true, premultipliedAlpha: true });
     if (!gl) return;
 
     const vertexShader = compileShader(gl, gl.VERTEX_SHADER, VERTEX_SHADER);
