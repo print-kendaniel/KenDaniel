@@ -39,12 +39,14 @@ export function Header() {
           transition: "opacity 700ms var(--ease-spring) 150ms, transform 700ms var(--ease-spring) 150ms",
         }}
       >
-        <div className="shell flex items-center justify-between gap-6 px-5 py-5 sm:px-8 sm:py-6">
+        <div
+          className={`shell flex items-center justify-between gap-6 px-5 py-5 sm:px-8 sm:py-6 ${isHome ? "text-white" : ""}`}
+        >
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-lg font-semibold tracking-tight transition-transform duration-300 ease-(--ease-spring-snappy) hover:scale-104"
           >
-            <LogoMark className="size-5 text-accent" />
+            <LogoMark className={`size-5 ${isHome ? "text-white" : "text-accent"}`} />
             ASE Daniel
           </Link>
 
@@ -62,17 +64,23 @@ export function Header() {
           </ul>
 
           <div className="flex items-center gap-3">
-            <div className="hidden items-center gap-3 rounded-control border border-line/80 bg-white/40 px-3 py-2 text-xs text-black/70 backdrop-blur-xs md:flex">
-              <span className="text-black/45">Local time</span>
-              <span className="tabular-nums min-w-14 font-medium text-black">{time}</span>
-              <span className="text-black/30">•</span>
+            <div
+              className={`hidden items-center gap-3 rounded-control border px-3 py-2 text-xs backdrop-blur-xs md:flex ${
+                isHome ? "border-white/25 bg-white/10 text-white/70" : "border-line/80 bg-white/40 text-black/70"
+              }`}
+            >
+              <span className={isHome ? "text-white/50" : "text-black/45"}>Local time</span>
+              <span className={`tabular-nums min-w-14 font-medium ${isHome ? "text-white" : "text-black"}`}>{time}</span>
+              <span className={isHome ? "text-white/35" : "text-black/30"}>•</span>
               <span className="font-medium">{date}</span>
             </div>
 
             <button
               type="button"
               onClick={() => setIsNavOpen(true)}
-              className="rounded-control border border-line/80 bg-white/40 backdrop-blur-xs transition-colors hover:bg-white/70"
+              className={`rounded-control border backdrop-blur-xs transition-colors ${
+                isHome ? "border-white/25 bg-white/10 hover:bg-white/20" : "border-line/80 bg-white/40 hover:bg-white/70"
+              }`}
             >
               <span className="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium tracking-wide uppercase transition-transform duration-300 ease-(--ease-spring-snappy) hover:scale-105">
                 <GridIcon className="size-3.5" />

@@ -1,113 +1,107 @@
 "use client";
 
-import { Roboto_Flex } from "next/font/google";
-import { LiquidReveal } from "@/components/effects/liquid-reveal";
-import { TextPressure } from "@/components/effects/text-pressure";
-import { RevealFade } from "@/components/effects/reveal-fade";
-import { Eyebrow } from "@/components/ui/eyebrow";
-import { PillButton } from "@/components/ui/pill-button";
-import { CircleDot } from "@/components/ui/icons";
-import { HeroCard, type CarouselItem } from "@/components/home/hero-card";
+import { motion, type Variants } from "motion/react";
 import { useContactModal } from "@/components/contact/contact-modal-context";
-import { profile } from "@/lib/content/profile";
-import type { Project } from "@/types/project";
+import { PillButton } from "@/components/ui/pill-button";
+import { ArrowRight, ArrowDown } from "@/components/ui/icons";
+import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion";
 
-const robotoFlex = Roboto_Flex({ subsets: ["latin"] });
+const sectionVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.14 } },
+};
 
-const builtWith = ["Next.js", "Firebase", "Python", "TensorFlow", "OpenCV", "Docker", "n8n"];
+const photoVariants: Variants = {
+  hidden: { opacity: 0, scale: 1.04, filter: "blur(12px)" },
+  visible: { opacity: 1, scale: 1, filter: "blur(0px)", transition: { type: "spring", duration: 1.08, bounce: 0 } },
+};
 
-export function Hero({ featuredProjects }: { featuredProjects: Project[] }) {
+const copyVariants: Variants = {
+  hidden: { opacity: 0, x: -22, filter: "blur(8px)" },
+  visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { type: "spring", duration: 0.78, bounce: 0 } },
+};
+
+const buttonRowVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+};
+
+const buttonVariants: Variants = {
+  hidden: { opacity: 0, y: 12, scale: 0.98, filter: "blur(6px)" },
+  visible: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", transition: { type: "spring", duration: 0.58, bounce: 0 } },
+};
+
+/**
+ * Full-bleed photo hero, adapted from the "hero-19" community layout. The
+ * template's own nav bar is dropped — this site already has a global
+ * `Header` (logo, links, live clock, menu) rendered above every page in
+ * `app/layout.tsx`, so a second nav here would just duplicate it.
+ */
+export function Hero() {
   const { openContactModal } = useContactModal();
-
-  const carouselItems: CarouselItem[] = featuredProjects.slice(0, 3).map((project) => ({
-    caption: project.techStack[0] ?? "Project",
-    title: project.title.split("–")[0].trim(),
-  }));
+  const reducedMotion = usePrefersReducedMotion();
 
   return (
-    <section id="home" className="relative isolate overflow-hidden rounded-b-card bg-hero-to">
-      <LiquidReveal beforeSrc="/hero/after.svg" afterSrc="/hero/before.svg" alt="" />
+    <section className="relative isolate min-h-screen overflow-hidden rounded-b-card text-white">
+      <motion.div
+        className="relative flex min-h-screen w-full flex-col overflow-hidden"
+        initial={reducedMotion ? "visible" : "hidden"}
+        animate="visible"
+        variants={sectionVariants}
+      >
+        <motion.img
+          variants={photoVariants}
+          src="/about/portrait.jpg"
+          alt=""
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        />
+        <div aria-hidden className="absolute inset-0 bg-linear-to-t from-ink via-ink/55 to-ink/25" />
 
-      <div
-        aria-hidden
-        className="absolute inset-0 z-1 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, rgba(255,255,255,.35), transparent, rgba(255,255,255,.35))" }}
-      />
+        <div className="shell relative z-10 flex flex-1 items-center px-5 pt-28 pb-20 sm:px-8 lg:pt-36 lg:pb-28">
+          <div className="max-w-xl">
+            <motion.p variants={copyVariants} className="text-xs font-medium tracking-wide text-white/80 uppercase">
+              Computer Engineer, Class of 2026
+            </motion.p>
 
-      <RevealFade delay={300} translateY={20} className="pointer-events-none absolute inset-x-0 z-1 bottom-28 text-center select-none">
-        <span
-          aria-hidden
-          className="font-bold leading-none text-white/40 whitespace-nowrap"
-          style={{ fontSize: "var(--text-watermark)" }}
-        >
-          ASE DANIEL
-        </span>
-      </RevealFade>
+            <motion.h1
+              variants={copyVariants}
+              className="mt-5 text-[clamp(2.5rem,5.5vw,4.4rem)] leading-[1.04] font-semibold tracking-tight text-balance"
+            >
+              <span className="block">Engineering ideas,</span>
+              <span className="block">shipped with precision</span>
+            </motion.h1>
 
-      <div className="shell relative z-20 flex flex-col gap-8 px-5 pt-28 pb-20 sm:px-8 lg:grid lg:min-h-screen lg:grid-cols-12 lg:gap-10 lg:pt-36 lg:pb-28">
-        <div className="flex flex-col gap-7 lg:col-span-7">
-          <RevealFade delay={200} translateY={10}>
-            <Eyebrow>Computer Engineer, Class of 2026</Eyebrow>
-          </RevealFade>
+            <motion.p variants={copyVariants} className="mt-5 max-w-md text-sm leading-relaxed text-white/80">
+              AI security tools, computer vision systems, and workflow automation that ships.
+            </motion.p>
 
-          <RevealFade delay={250} translateY={10}>
-            <div className="h-28 sm:h-36 md:h-44">
-              <TextPressure
-                text={profile.name}
-                fontFamily={robotoFlex.style.fontFamily}
-                flex={false}
-                width={false}
-                italic={false}
-                textColor="var(--foreground)"
-                minFontSize={28}
-              />
-            </div>
-          </RevealFade>
-
-          <RevealFade delay={750} translateY={10}>
-            <div className="flex flex-wrap gap-3">
-              <PillButton variant="dark" arrow="right" onClick={openContactModal}>
-                Let&apos;s Talk
-              </PillButton>
-              <PillButton variant="outline" href="/projects">
+            <motion.div variants={buttonRowVariants} className="mt-8 flex flex-wrap items-center gap-5">
+              <motion.div variants={buttonVariants}>
+                <PillButton variant="light" arrow="right" onClick={openContactModal}>
+                  Let&apos;s Talk
+                </PillButton>
+              </motion.div>
+              <motion.a
+                variants={buttonVariants}
+                href="/projects"
+                className="group inline-flex items-center gap-2 text-sm font-medium text-white/90 transition-colors hover:text-white"
+              >
                 View Work
-              </PillButton>
-            </div>
-          </RevealFade>
-        </div>
-
-        <div className="flex flex-col items-start gap-8 lg:col-span-5 lg:items-end">
-          <RevealFade delay={400} translateY={16} scaleFrom={0.96}>
-            <HeroCard items={carouselItems} />
-          </RevealFade>
-
-          <RevealFade delay={550} translateY={14} className="w-full max-w-96 lg:w-76">
-            <p className="mb-3 text-left text-xs font-medium text-black/45 lg:text-right">Built with</p>
-            <ul className="grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-4 lg:grid-cols-2">
-              {builtWith.map((tool) => (
-                <li
-                  key={tool}
-                  className="flex items-center gap-1.5 text-xs text-black/70 transition-transform duration-300 ease-(--ease-spring-snappy) hover:-translate-y-0.5"
-                >
-                  <CircleDot className="size-3.5 text-black/40" />
-                  {tool}
-                </li>
-              ))}
-            </ul>
-          </RevealFade>
-        </div>
-
-        <RevealFade delay={900} translateY={0} className="lg:col-span-12">
-          <div className="shell flex items-center justify-between gap-3 border-t border-black/10 px-0 py-5 text-xs font-medium tracking-wide text-black/60 uppercase sm:px-0">
-            <span>B.S. Computer Engineering, 2026</span>
-            <span className="hidden sm:inline">Based in Biñan, Laguna, PH</span>
-            <span className="inline-flex items-center gap-2">
-              Scroll to explore
-              <span aria-hidden>↓</span>
-            </span>
+                <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </motion.a>
+            </motion.div>
           </div>
-        </RevealFade>
-      </div>
+        </div>
+
+        <motion.a
+          variants={copyVariants}
+          href="#main"
+          className="absolute right-6 bottom-6 z-10 hidden items-center gap-3 text-xs font-medium tracking-wide text-white/80 uppercase transition-colors hover:text-white sm:inline-flex lg:right-10 lg:bottom-10"
+        >
+          Scroll to explore
+          <ArrowDown className="size-3.5" />
+        </motion.a>
+      </motion.div>
     </section>
   );
 }

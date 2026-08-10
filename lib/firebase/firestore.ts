@@ -75,14 +75,6 @@ export async function listProjects(): Promise<Project[]> {
   return snapshot.docs.map(projectFromDoc);
 }
 
-export async function listFeaturedProjects(): Promise<Project[]> {
-  const snapshot = await projectsCollection
-    .where("featured", "==", true)
-    .orderBy("order", "asc")
-    .get();
-  return snapshot.docs.map(projectFromDoc);
-}
-
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
   const snapshot = await projectsCollection.where("slug", "==", slug).limit(1).get();
   if (snapshot.empty) return null;

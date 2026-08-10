@@ -1,4 +1,4 @@
-import { listFeaturedProjects, listProjects } from "@/lib/firebase/firestore";
+import { listProjects } from "@/lib/firebase/firestore";
 import { Hero } from "@/components/home/hero";
 import { CreateBand } from "@/components/home/create-band";
 import { PortfolioSection } from "@/components/home/portfolio-section";
@@ -8,11 +8,11 @@ import { ScrollExpand } from "@/components/effects/scroll-expand";
 import { profile } from "@/lib/content/profile";
 
 export default async function HomePage() {
-  const [featuredProjects, allProjects] = await Promise.all([listFeaturedProjects(), listProjects()]);
+  const allProjects = await listProjects();
 
   return (
     <>
-      <Hero featuredProjects={featuredProjects} />
+      <Hero />
       <ScrollExpand
         src="/about/portrait.jpg"
         alt={profile.name}

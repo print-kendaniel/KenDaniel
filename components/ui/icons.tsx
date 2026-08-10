@@ -31,6 +31,24 @@ export function ArrowRight({ className, style }: IconProps) {
   );
 }
 
+export function ArrowDown({ className, style }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      style={style}
+      aria-hidden
+    >
+      <path d="M12 5v14M6 13l6 6 6-6" />
+    </svg>
+  );
+}
+
 export function ArrowUpRight({ className, style }: IconProps) {
   return (
     <svg
