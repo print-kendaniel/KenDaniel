@@ -22,6 +22,14 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // firebase-admin ships some entry points (e.g. firebase-admin/auth) as ESM;
+  // Next.js's default bundling requires() it as CommonJS inside serverless
+  // functions and throws ERR_REQUIRE_ESM at runtime. Leaving it unbundled
+  // (resolved natively from node_modules at request time) is the standard
+  // fix — this only ever showed up on Vercel, not `next dev`/`next build`
+  // locally, because local runs don't go through the same serverless
+  // function bundling path.
+  serverExternalPackages: ["firebase-admin"],
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "storage.googleapis.com" },
