@@ -1,17 +1,20 @@
 "use client";
 
+import type { Ref } from "react";
 import { useDecryptText } from "@/lib/hooks/use-decrypt-text";
 
 interface DecryptTextProps {
   lines: string[];
   level?: 1 | 2 | 3;
+  /** Render as a plain paragraph instead of a heading — for non-heading text (e.g. an eyebrow) that still wants the scramble effect. */
+  as?: "p";
   className?: string;
   gateOnReady?: boolean;
   delay?: number;
 }
 
 /** Character-scramble reveal for headings — drop-in replacement for RevealLines. */
-export function DecryptText({ lines, level = 2, className, gateOnReady = false, delay = 0 }: DecryptTextProps) {
+export function DecryptText({ lines, level = 2, as, className, gateOnReady = false, delay = 0 }: DecryptTextProps) {
   const fullText = lines.join("");
   const { ref, display, isScrambling } = useDecryptText<HTMLHeadingElement>(fullText, { gateOnReady, delay });
 
@@ -30,6 +33,14 @@ export function DecryptText({ lines, level = 2, className, gateOnReady = false, 
 
   const fontClass = isScrambling ? "font-mono" : "";
   const combinedClassName = `${className ?? ""} ${fontClass}`.trim();
+
+  if (as === "p") {
+    return (
+      <p ref={ref as unknown as Ref<HTMLParagraphElement>} className={combinedClassName}>
+        {content}
+      </p>
+    );
+  }
 
   if (level === 1) {
     return (

@@ -3,15 +3,7 @@ import { ScrollFocus } from "@/components/effects/scroll-focus";
 import { DecryptText } from "@/components/effects/decrypt-text";
 import { CountUp } from "@/components/effects/count-up";
 import { Eyebrow } from "@/components/ui/eyebrow";
-import { profile } from "@/lib/content/profile";
-
-function programYears(): number {
-  const education = profile.timeline.find((entry) => entry.kind === "education");
-  if (!education) return 0;
-  const startYear = Number(education.start.slice(0, 4));
-  const endYear = Number(education.end.slice(0, 4));
-  return endYear - startYear;
-}
+import { profile, programYears } from "@/lib/content/profile";
 
 export function StatsSection({ projectsCount }: { projectsCount: number }) {
   const stats = [

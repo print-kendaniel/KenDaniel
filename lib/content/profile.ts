@@ -106,3 +106,12 @@ export const profile = {
     },
   ] satisfies TimelineEntry[],
 } as const;
+
+/** Years spent in the Computer Engineering program, derived from the timeline entry itself. */
+export function programYears(): number {
+  const education = profile.timeline.find((entry) => entry.kind === "education");
+  if (!education) return 0;
+  const startYear = Number(education.start.slice(0, 4));
+  const endYear = Number(education.end.slice(0, 4));
+  return endYear - startYear;
+}

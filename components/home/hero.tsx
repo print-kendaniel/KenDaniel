@@ -17,11 +17,14 @@ import {
   SiGooglechrome,
   SiGooglegemini,
 } from "react-icons/si";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { useContactModal } from "@/components/contact/contact-modal-context";
 import { PillButton } from "@/components/ui/pill-button";
 import { ArrowRight, ArrowDown } from "@/components/ui/icons";
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion";
 import { DriftWall, type DriftWallItem } from "@/components/effects/drift-wall";
+import { DecryptText } from "@/components/effects/decrypt-text";
+import { profile, programYears } from "@/lib/content/profile";
 
 // The real tech stack across this site's projects (scripts/seed.ts) plus
 // the "Built with" list — nothing invented.
@@ -73,9 +76,15 @@ const buttonVariants: Variants = {
  * `Header` (logo, links, live clock, menu) rendered above every page in
  * `app/layout.tsx`, so a second nav here would just duplicate it.
  */
-export function Hero() {
+export function Hero({ projectsCount }: { projectsCount: number }) {
   const { openContactModal } = useContactModal();
   const reducedMotion = usePrefersReducedMotion();
+
+  const stats = [
+    { value: projectsCount, label: "Projects shipped" },
+    { value: profile.certifications.length, label: "Certifications" },
+    { value: programYears(), label: "Years in CpE" },
+  ];
 
   return (
     <section className="relative isolate min-h-screen overflow-hidden rounded-b-card text-white">
@@ -92,9 +101,15 @@ export function Hero() {
 
         <div className="shell relative z-10 flex flex-1 items-center px-5 pt-28 pb-20 sm:px-8 lg:pt-36 lg:pb-28">
           <div className="max-w-xl">
-            <motion.p variants={copyVariants} className="text-xs font-medium tracking-wide text-white/80 uppercase">
-              Computer Engineer, Class of 2026
-            </motion.p>
+            <motion.div variants={copyVariants}>
+              <DecryptText
+                lines={["Computer Engineer, Class of 2026"]}
+                as="p"
+                gateOnReady
+                delay={300}
+                className="text-xs font-medium tracking-wide text-white/80 uppercase"
+              />
+            </motion.div>
 
             <motion.h1
               variants={copyVariants}
@@ -122,6 +137,36 @@ export function Hero() {
                 View Work
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
               </motion.a>
+
+              <motion.div variants={buttonVariants} className="flex items-center gap-2">
+                <a
+                  href={profile.links.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="GitHub"
+                  className="grid size-10 place-items-center rounded-pill border border-white/20 bg-white/10 text-white/85 backdrop-blur-xs transition-colors hover:bg-white/20 hover:text-white"
+                >
+                  <FaGithub className="size-4" />
+                </a>
+                <a
+                  href={profile.links.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="LinkedIn"
+                  className="grid size-10 place-items-center rounded-pill border border-white/20 bg-white/10 text-white/85 backdrop-blur-xs transition-colors hover:bg-white/20 hover:text-white"
+                >
+                  <FaLinkedin className="size-4" />
+                </a>
+              </motion.div>
+            </motion.div>
+
+            <motion.div variants={buttonRowVariants} className="mt-14 flex flex-wrap items-center gap-10">
+              {stats.map((stat) => (
+                <motion.div key={stat.label} variants={buttonVariants}>
+                  <span className="tabular-nums text-3xl font-semibold tracking-tight sm:text-4xl">{stat.value}</span>
+                  <p className="mt-1 text-xs text-white/60">{stat.label}</p>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </div>
