@@ -29,8 +29,15 @@ export function useContactSubmit() {
       });
 
       if (!response.ok) {
-        const body = await response.json();
-        throw new Error(body?.error?.message ?? "Something went wrong.");
+        // A 500 from a crashed API route returns an HTML error page, not
+        // JSON — parsing that as JSON throws its own confusing error
+        // ("Unexpected token '<'...") that used to leak straight to the user
+        // instead of a real message.
+        const message = await response
+          .json()
+          .then((body) => body?.error?.message)
+          .catch(() => null);
+        throw new Error(message ?? "Something went wrong. Please try again in a moment.");
       }
 
       setStatus("success");
