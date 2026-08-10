@@ -1,10 +1,46 @@
 "use client";
 
 import { motion, type Variants } from "motion/react";
+import {
+  SiNextdotjs,
+  SiFirebase,
+  SiReact,
+  SiDocker,
+  SiPython,
+  SiTensorflow,
+  SiOpencv,
+  SiN8N,
+  SiTailwindcss,
+  SiRaspberrypi,
+  SiCloudinary,
+  SiFastapi,
+  SiGooglechrome,
+  SiGooglegemini,
+} from "react-icons/si";
 import { useContactModal } from "@/components/contact/contact-modal-context";
 import { PillButton } from "@/components/ui/pill-button";
 import { ArrowRight, ArrowDown } from "@/components/ui/icons";
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion";
+import { DriftWall, type DriftWallItem } from "@/components/effects/drift-wall";
+
+// The real tech stack across this site's projects (scripts/seed.ts) plus
+// the "Built with" list — nothing invented.
+const techStack: DriftWallItem[] = [
+  { icon: SiNextdotjs, label: "Next.js" },
+  { icon: SiFirebase, label: "Firebase" },
+  { icon: SiReact, label: "React" },
+  { icon: SiDocker, label: "Docker" },
+  { icon: SiPython, label: "Python" },
+  { icon: SiTensorflow, label: "TensorFlow" },
+  { icon: SiOpencv, label: "OpenCV" },
+  { icon: SiN8N, label: "n8n" },
+  { icon: SiTailwindcss, label: "Tailwind CSS" },
+  { icon: SiRaspberrypi, label: "Raspberry Pi" },
+  { icon: SiCloudinary, label: "Cloudinary" },
+  { icon: SiFastapi, label: "FastAPI" },
+  { icon: SiGooglechrome, label: "Chrome Extension" },
+  { icon: SiGooglegemini, label: "Gemini AI" },
+];
 
 const sectionVariants: Variants = {
   hidden: {},
@@ -49,13 +85,10 @@ export function Hero() {
         animate="visible"
         variants={sectionVariants}
       >
-        <motion.img
-          variants={photoVariants}
-          src="/about/portrait.jpg"
-          alt=""
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-        />
-        <div aria-hidden className="absolute inset-0 bg-linear-to-t from-ink via-ink/55 to-ink/25" />
+        <motion.div variants={photoVariants} className="pointer-events-none absolute inset-0">
+          <DriftWall items={techStack} columns={6} tileWidth={160} tileHeight={106} gap={16} speed={30} />
+        </motion.div>
+        <div aria-hidden className="absolute inset-0 bg-linear-to-t from-ink via-ink/70 to-ink/45" />
 
         <div className="shell relative z-10 flex flex-1 items-center px-5 pt-28 pb-20 sm:px-8 lg:pt-36 lg:pb-28">
           <div className="max-w-xl">
