@@ -23,11 +23,13 @@ const FRAGMENT_SHADER = `
   void main() {
     vec2 uv = gl_FragCoord.xy;
     float noise = hash(uv + uTime);
-    // Premultiplied output (rgb already scaled by alpha) — non-premultiplied
-    // alpha canvases (the old approach here) composite inconsistently on
-    // Safari, rendering far more opaque than the alpha value implies.
-    float alpha = 0.05;
-    gl_FragColor = vec4(vec3(noise) * alpha, alpha);
+    // Fully opaque output - no WebGL-level alpha at all. Cross-browser canvas
+    // alpha compositing (this used to rely on it) is inconsistent on Safari,
+    // where it rendered far more opaque than intended even after switching
+    // to premultiplied alpha. The actual subtlety is applied with a plain
+    // CSS opacity on the canvas element instead, which every browser
+    // composites identically.
+    gl_FragColor = vec4(vec3(noise), 1.0);
   }
 `;
 
@@ -57,7 +59,7 @@ export function GrainOverlay() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const gl = canvas.getContext("webgl", { alpha: true, premultipliedAlpha: true });
+    const gl = canvas.getContext("webgl", { alpha: false });
     if (!gl) return;
 
     const vertexShader = compileShader(gl, gl.VERTEX_SHADER, VERTEX_SHADER);
@@ -96,8 +98,6 @@ export function GrainOverlay() {
 
     function render(time: number) {
       if (!gl) return;
-      gl.clearColor(0, 0, 0, 0);
-      gl.clear(gl.COLOR_BUFFER_BIT);
       gl.uniform1f(timeLoc, time);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
     }
@@ -120,5 +120,12 @@ export function GrainOverlay() {
     };
   }, [reducedMotion]);
 
-  return <canvas ref={canvasRef} aria-hidden className="pointer-events-none fixed inset-0 z-90" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      aria-hidden
+      className="pointer-events-none fixed inset-0 z-90"
+      style={{ opacity: 0.05 }}
+    />
+  );
 }
