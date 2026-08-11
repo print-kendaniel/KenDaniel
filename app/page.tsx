@@ -1,5 +1,5 @@
 import { listProjects } from "@/lib/firebase/firestore";
-import { Hero } from "@/components/home/hero";
+import { HeroMacBook } from "@/components/hero/hero-macbook";
 import { CreateBand } from "@/components/home/create-band";
 import { PortfolioSection } from "@/components/home/portfolio-section";
 import { ServicesSection } from "@/components/home/services-section";
@@ -12,7 +12,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero projectsCount={allProjects.length} latestProject={allProjects[0] ?? null} />
+      <HeroMacBook />
       <ScrollExpand
         src="/about/portrait.jpg"
         alt={profile.name}

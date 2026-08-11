@@ -2,7 +2,12 @@ import type { NextConfig } from "next";
 
 const contentSecurityPolicy = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  // 'wasm-unsafe-eval' (not the broader 'unsafe-eval') — the hero's 3D
+  // MacBook (@react-three/drei's GLTF loader) instantiates WebAssembly for
+  // Draco/Meshopt mesh decompression. Harmless with the current procedural
+  // fallback (no WASM involved), but needed for real compressed .glb models.
+  "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'",
+  "worker-src 'self' blob:",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https://storage.googleapis.com https://res.cloudinary.com",
   "font-src 'self' data:",
