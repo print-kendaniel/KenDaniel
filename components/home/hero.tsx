@@ -1,6 +1,9 @@
 "use client";
 
 import { motion, type Variants } from "motion/react";
+import Link from "next/link";
+import type { Project } from "@/types/project";
+import { TagChip } from "@/components/ui/tag-chip";
 import {
   SiNextdotjs,
   SiFirebase,
@@ -20,7 +23,7 @@ import {
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { useContactModal } from "@/components/contact/contact-modal-context";
 import { PillButton } from "@/components/ui/pill-button";
-import { ArrowRight, ArrowDown } from "@/components/ui/icons";
+import { ArrowRight, ArrowDown, ArrowUpRight } from "@/components/ui/icons";
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion";
 import { DriftWall, type DriftWallItem } from "@/components/effects/drift-wall";
 import { DecryptText } from "@/components/effects/decrypt-text";
@@ -76,7 +79,7 @@ const buttonVariants: Variants = {
  * `Header` (logo, links, live clock, menu) rendered above every page in
  * `app/layout.tsx`, so a second nav here would just duplicate it.
  */
-export function Hero({ projectsCount }: { projectsCount: number }) {
+export function Hero({ projectsCount, latestProject }: { projectsCount: number; latestProject: Project | null }) {
   const { openContactModal } = useContactModal();
   const reducedMotion = usePrefersReducedMotion();
 
@@ -87,9 +90,9 @@ export function Hero({ projectsCount }: { projectsCount: number }) {
   ];
 
   return (
-    <section className="relative isolate min-h-screen overflow-hidden rounded-b-card text-white">
+    <section className="relative isolate min-h-[90vh] overflow-hidden rounded-b-card text-white">
       <motion.div
-        className="relative flex min-h-screen w-full flex-col overflow-hidden"
+        className="relative flex min-h-[90vh] w-full flex-col overflow-hidden"
         initial={reducedMotion ? "visible" : "hidden"}
         animate="visible"
         variants={sectionVariants}
@@ -99,8 +102,9 @@ export function Hero({ projectsCount }: { projectsCount: number }) {
         </motion.div>
         <div aria-hidden className="absolute inset-0 bg-linear-to-t from-ink via-ink/70 to-ink/45" />
 
-        <div className="shell relative z-10 flex flex-1 items-center px-5 pt-28 pb-20 sm:px-8 lg:pt-36 lg:pb-28">
-          <div className="max-w-xl">
+        <div className="shell relative z-10 flex flex-1 items-center px-5 pt-28 pb-20 sm:px-8 lg:pt-32 lg:pb-24">
+          <div className="grid w-full gap-12 lg:grid-cols-12 lg:items-center">
+            <div className="max-w-xl lg:col-span-7">
             <motion.div variants={copyVariants}>
               <DecryptText
                 lines={["Computer Engineer, Class of 2026"]}
@@ -168,6 +172,34 @@ export function Hero({ projectsCount }: { projectsCount: number }) {
                 </motion.div>
               ))}
             </motion.div>
+            </div>
+
+            {latestProject && (
+              <motion.div variants={copyVariants} className="lg:col-span-5 lg:flex lg:justify-end">
+                <Link
+                  href={`/projects/${latestProject.slug}`}
+                  className="group block w-full max-w-sm rounded-card border border-white/15 bg-white/10 p-6 backdrop-blur-sm transition-colors hover:bg-white/15 sm:p-7"
+                >
+                  <div className="flex items-center justify-between text-xs font-medium tracking-wide text-white/60 uppercase">
+                    <span>Featured project</span>
+                    <span className="grid size-9 place-items-center rounded-pill bg-white/10 ring-1 ring-white/15 transition-transform duration-300 ease-(--ease-spring-snappy) group-hover:translate-x-1 group-hover:-translate-y-1">
+                      <ArrowUpRight className="size-4" />
+                    </span>
+                  </div>
+                  <h3 className="mt-4 text-xl font-medium tracking-tight sm:text-2xl">
+                    {latestProject.title.split("–")[0].trim()}
+                  </h3>
+                  <p className="mt-2 text-sm text-white/70">{latestProject.summary}</p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {latestProject.techStack.slice(0, 3).map((tech) => (
+                      <TagChip key={tech} tone="light">
+                        {tech}
+                      </TagChip>
+                    ))}
+                  </div>
+                </Link>
+              </motion.div>
+            )}
           </div>
         </div>
 

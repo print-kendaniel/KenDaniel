@@ -12,7 +12,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero projectsCount={allProjects.length} />
+      <Hero projectsCount={allProjects.length} latestProject={allProjects[0] ?? null} />
       <ScrollExpand
         src="/about/portrait.jpg"
         alt={profile.name}
