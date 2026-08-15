@@ -1,12 +1,8 @@
 import { RevealFade } from "@/components/effects/reveal-fade";
 import { DecryptText } from "@/components/effects/decrypt-text";
-import { SpatialGrid } from "@/components/effects/spatial-grid";
-import { SpatialCard } from "@/components/effects/spatial-card";
 import { Eyebrow } from "@/components/ui/eyebrow";
-import { ProjectCard } from "@/components/projects/project-card";
+import { ProjectCarousel } from "@/components/home/project-carousel";
 import type { Project } from "@/types/project";
-
-const DEPTH_PATTERN = [-24, 22, 22, -24];
 
 export function PortfolioSection({ projects }: { projects: Project[] }) {
   return (
@@ -23,17 +19,9 @@ export function PortfolioSection({ projects }: { projects: Project[] }) {
           />
         </div>
 
-        <SpatialGrid className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {projects.map((project, index) => (
-            <li key={project.id}>
-              <RevealFade delay={index * 90} translateY={48}>
-                <SpatialCard depth={DEPTH_PATTERN[index % DEPTH_PATTERN.length]}>
-                  <ProjectCard project={project} />
-                </SpatialCard>
-              </RevealFade>
-            </li>
-          ))}
-        </SpatialGrid>
+        <RevealFade delay={100} translateY={40}>
+          <ProjectCarousel projects={projects} />
+        </RevealFade>
       </div>
     </section>
   );
