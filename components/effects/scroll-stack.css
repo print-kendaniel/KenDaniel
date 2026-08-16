@@ -35,7 +35,7 @@
   box-sizing: border-box;
   transform: translateZ(0);
   position: relative;
-  background: var(--color-ink, #0a0a0a);
+  background: var(--color-ink, #a100ff);
   color: #fff;
   display: flex;
   align-items: center;
