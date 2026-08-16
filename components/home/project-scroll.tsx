@@ -66,8 +66,8 @@ export function ProjectScroll({ projects }: { projects: Project[] }) {
   }
 
   return (
-    <div ref={sectionRef} className="relative" style={{ height: `${(projects.length + 1) * 55}vh` }}>
-      <div className="sticky top-0 flex h-[80vh] items-center overflow-hidden">
+    <div ref={sectionRef} className="relative" style={{ height: `${(projects.length + 1) * 55}dvh` }}>
+      <div className="sticky top-0 flex h-[85dvh] items-center overflow-hidden sm:h-[80dvh]">
         <motion.div ref={trackRef} className="flex gap-6 px-[6vw]" style={{ x }}>
           {projects.map((project, index) => (
             <ProjectScrollCard key={project.id} project={project} isActive={index === active} className={CARD_CLASS} />
@@ -93,7 +93,7 @@ function ProjectScrollCard({
     <Link
       href={`/projects/${project.slug}`}
       data-active={isActive}
-      className={`project-scroll-card group relative flex h-120 flex-col overflow-hidden rounded-card bg-ink p-6 text-white sm:p-8 ${className}`}
+      className={`project-scroll-card group relative flex h-100 max-h-full flex-col overflow-hidden rounded-card bg-ink p-6 text-white sm:h-120 sm:p-8 ${className}`}
     >
       <div className="flex items-center justify-between text-xs tracking-wide text-white/45 uppercase">
         <span>{category}</span>

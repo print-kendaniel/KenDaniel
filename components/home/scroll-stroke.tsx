@@ -29,7 +29,7 @@ export function ScrollStroke() {
   return (
     <section
       ref={ref}
-      className="relative mx-auto flex h-[350vh] w-screen flex-col items-center overflow-hidden bg-background px-4 text-foreground"
+      className="relative mx-auto flex h-[350dvh] w-screen flex-col items-center overflow-hidden bg-background px-4 text-foreground"
     >
       <LinePath
         className="pointer-events-none absolute inset-0 z-0 h-full w-full"
@@ -37,23 +37,23 @@ export function ScrollStroke() {
         reducedMotion={reducedMotion}
       />
 
-      <div className="relative z-10 mt-42 flex w-fit flex-col items-center justify-center gap-5 text-center">
+      <div className="relative z-10 mt-16 flex w-fit flex-col items-center justify-center gap-5 text-center sm:mt-24 lg:mt-42">
         <RevealFade>
-          <h2 className="text-7xl font-medium tracking-[-0.08em] lg:text-9xl">
+          <h2 className="text-4xl font-medium tracking-[-0.08em] sm:text-6xl lg:text-9xl">
             Every Solution, <br /> Engineered With <br />
             Precision
           </h2>
         </RevealFade>
         <RevealFade delay={100}>
-          <p className="max-w-2xl text-xl font-medium text-muted">Scroll to see it take shape</p>
+          <p className="max-w-2xl px-4 text-base font-medium text-muted sm:text-xl">Scroll to see it take shape</p>
         </RevealFade>
       </div>
 
-      <div className="relative z-10 w-full translate-y-[200vh] rounded-4xl bg-ink pb-10 text-white">
+      <div className="relative z-10 w-full translate-y-[200dvh] rounded-4xl bg-ink pb-10 text-white">
         <h3 className="mt-10 text-center text-[15.5vw] font-bold leading-[0.9] tracking-tighter lg:text-[16.6vw]">
           ASE DANIEL
         </h3>
-        <div className="mt-80 flex w-full flex-col items-start gap-5 px-4 font-medium lg:mt-0 lg:flex-row lg:justify-between">
+        <div className="mt-16 flex w-full flex-col items-start gap-5 px-4 font-medium sm:mt-24 lg:mt-0 lg:flex-row lg:justify-between">
           {[infoColumns.slice(0, 2), infoColumns.slice(2, 4)].map((group, groupIndex) => (
             <div
               key={groupIndex}

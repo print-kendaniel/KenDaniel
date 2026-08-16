@@ -127,9 +127,24 @@ body {
   html {
     font-size: 1.5625vw;
   }
+  :root {
+    /* The Footer's giant background name (whitespace-nowrap, sized off
+       this token) was fixed at 13rem on every viewport — badly
+       oversized and edge-to-edge on tablet/phone widths. */
+    --text-watermark: 7rem;
+  }
 }
 @media (max-width: 640px) {
+  :root {
+    --text-watermark: 4rem;
+  }
   html {
-    font-size: 4.444444vw;
+    /* Unclamped, this coefficient hits 16px only at 360px width and
+       balloons to ~28px by 640px — a phone at 428px was rendering
+       everything at ~19px, and a small tablet/foldable at 600px+ was
+       rendering nearly double size. Clamped to a tight band around the
+       16px baseline so real phone widths (320-640px) stay legible
+       instead of swinging between undersized and oversized. */
+    font-size: clamp(15px, 4.444444vw, 17px);
   }
 }

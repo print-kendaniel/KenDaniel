@@ -57,13 +57,13 @@ export function ParallaxGallery() {
 
   return (
     <section aria-label="Photo gallery" className="w-full overflow-hidden bg-surface text-black">
-      <div className="flex h-[45vh] items-center justify-center">
+      <div className="flex h-[45dvh] items-center justify-center">
         <span className="relative max-w-[12ch] text-center text-xs leading-tight tracking-wide text-black/40 uppercase after:absolute after:top-full after:left-1/2 after:h-16 after:w-px after:bg-linear-to-b after:from-black/30 after:to-transparent after:content-['']">
           Scroll to see
         </span>
       </div>
 
-      <div ref={gallery} className="relative box-border flex h-[175vh] gap-[2vw] overflow-hidden p-[2vw]">
+      <div ref={gallery} className="relative box-border flex h-[175dvh] gap-[2vw] overflow-hidden p-[2vw]">
         <Column images={[images[0], images[1], images[2]]} y={reducedMotion ? undefined : y} top="-45%" />
         <Column images={[images[3], images[4], images[5]]} y={reducedMotion ? undefined : y2} top="-95%" />
         <Column images={[images[6], images[7], images[8]]} y={reducedMotion ? undefined : y3} top="-45%" />
@@ -82,7 +82,7 @@ interface ColumnProps {
 function Column({ images: columnImages, y, top }: ColumnProps) {
   return (
     <motion.div
-      className="relative flex h-full w-1/4 min-w-[220px] flex-col gap-[2vw]"
+      className="relative flex h-full w-1/4 min-w-0 flex-col gap-[2vw] sm:min-w-55"
       style={{ y, top }}
     >
       {columnImages.map((src, i) => (

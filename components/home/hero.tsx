@@ -24,10 +24,10 @@ export function Hero() {
       <div aria-hidden className="hero-grain pointer-events-none absolute inset-0 z-0" />
 
       <div
-        className="hero-anim-fade-up absolute inset-x-0 top-[18vh] z-10 overflow-hidden sm:top-[14vh]"
+        className="hero-anim-fade-up absolute inset-x-0 top-[18dvh] z-10 overflow-hidden sm:top-[14dvh]"
         style={{ animationDelay: "500ms" }}
       >
-        <div className="hero-marquee-track flex w-max leading-none font-semibold whitespace-nowrap text-white/10 text-[14vh] sm:text-[22vh]">
+        <div className="hero-marquee-track flex w-max leading-none font-semibold whitespace-nowrap text-white/10 text-[14dvh] sm:text-[22dvh]">
           <span className="pr-[6vw]">{marqueeText}&nbsp;</span>
           <span className="pr-[6vw]">{marqueeText}&nbsp;</span>
         </div>
@@ -40,7 +40,7 @@ export function Hero() {
           width={321}
           height={754}
           priority
-          className="h-[64vh] w-auto object-contain sm:h-[76vh]"
+          className="h-[64dvh] w-auto object-contain sm:h-[76dvh]"
         />
       </div>
 

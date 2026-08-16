@@ -37,7 +37,7 @@ export function ServicesSection() {
           className="mt-5 mb-14 max-w-[16ch] text-4xl font-semibold tracking-tight sm:mb-14 sm:text-5xl"
         />
 
-        <ScrollStack style={{ height: "78vh" }} itemDistance={70} itemStackDistance={22} baseScale={0.86}>
+        <ScrollStack style={{ height: "78dvh" }} itemDistance={70} itemStackDistance={22} baseScale={0.86}>
           {rows.map((row, index) => (
             <ScrollStackItem key={row.title}>
               <span className="w-8 shrink-0 text-sm font-medium text-white/45 sm:w-10">

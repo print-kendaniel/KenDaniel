@@ -18,8 +18,8 @@
 }
 
 .scroll-stack-inner {
-  padding: 12vh 0 40vh;
-  min-height: 100vh;
+  padding: 12dvh 0 40dvh;
+  min-height: 100dvh;
 }
 
 .scroll-stack-card {
@@ -40,6 +40,13 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .scroll-stack-card {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
 }
 
 .scroll-stack-end {
