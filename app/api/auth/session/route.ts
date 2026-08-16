@@ -3,6 +3,8 @@ import { z } from "zod";
 import { createSessionCookie, SESSION_COOKIE_MAX_AGE_MS, SESSION_COOKIE_NAME, verifyAdminIdToken } from "@/lib/auth/session";
 import { apiErrorBody, ApiError } from "@/lib/errors";
 import { logger, newRequestId } from "@/lib/logging/logger";
+import { authRateLimiter } from "@/lib/rate-limit/auth-limiter";
+import { getRequestIp } from "@/lib/ip";
 
 const bodySchema = z.object({
   idToken: z.string().min(1),
@@ -12,6 +14,11 @@ export async function POST(request: Request): Promise<NextResponse> {
   const requestId = newRequestId();
 
   try {
+    const rateLimit = authRateLimiter.check(getRequestIp(request));
+    if (!rateLimit.allowed) {
+      throw new ApiError(429, "rate_limited", "Too many attempts. Try again later.");
+    }
+
     const json = await request.json();
     const parsed = bodySchema.safeParse(json);
 
