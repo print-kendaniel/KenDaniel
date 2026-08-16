@@ -13,19 +13,21 @@ const marqueeText = `${marqueeFirst} — ${marqueeLast}`;
  * character cutout, a rule line, and a two-block footer. No CTA here by
  * design — the global `Header` (already absolute + white text on this
  * page) supplies navigation, so this section isn't duplicating a second
- * brand/menu. Colors follow the site's Accenture violet/black/white
- * theme instead of the source's cream-on-photo palette; there's no
- * background photograph to match the source's full-bleed image layer,
- * so the backdrop is a solid ink gradient instead.
+ * brand/menu. The backdrop is a layered radial glow on near-black (not a
+ * flat linear gradient) plus a faint grain texture, matching the
+ * restrained, low-opacity "watermark" treatment already used in the
+ * Footer instead of a loud, flat AI-gradient look.
  */
 export function Hero() {
   return (
-    <section className="relative h-dvh w-full overflow-hidden rounded-b-card bg-linear-to-b from-ink to-[#2c0047] text-white">
+    <section className="hero-backdrop relative h-dvh w-full overflow-hidden rounded-b-card text-white">
+      <div aria-hidden className="hero-grain pointer-events-none absolute inset-0 z-0" />
+
       <div
         className="hero-anim-fade-up absolute inset-x-0 top-[18vh] z-10 overflow-hidden sm:top-[14vh]"
         style={{ animationDelay: "500ms" }}
       >
-        <div className="hero-marquee-track flex w-max leading-none font-semibold whitespace-nowrap text-[14vh] sm:text-[22vh]">
+        <div className="hero-marquee-track flex w-max leading-none font-semibold whitespace-nowrap text-white/10 text-[14vh] sm:text-[22vh]">
           <span className="pr-[6vw]">{marqueeText}&nbsp;</span>
           <span className="pr-[6vw]">{marqueeText}&nbsp;</span>
         </div>
@@ -35,10 +37,10 @@ export function Hero() {
         <Image
           src="/hero/character.png"
           alt={profile.name}
-          width={666}
-          height={375}
+          width={321}
+          height={754}
           priority
-          className="h-auto w-[85vw] max-w-md object-contain sm:max-w-xl"
+          className="h-[64vh] w-auto object-contain sm:h-[76vh]"
         />
       </div>
 
