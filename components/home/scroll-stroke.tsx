@@ -49,11 +49,11 @@ export function ScrollStroke() {
         </RevealFade>
       </div>
 
-      <div className="relative z-10 w-full translate-y-[200dvh] rounded-4xl bg-ink pb-10 text-white">
-        <h3 className="mt-10 text-center text-[15.5vw] font-bold leading-[0.9] tracking-tighter lg:text-[16.6vw]">
+      <div className="relative z-10 flex min-h-dvh w-full translate-y-[200dvh] flex-col items-center justify-center gap-16 rounded-4xl bg-ink px-4 py-16 text-white sm:gap-20">
+        <h3 className="w-full text-center text-[15.5vw] leading-[0.9] font-bold tracking-tighter lg:text-[16.6vw]">
           ASE DANIEL
         </h3>
-        <div className="mt-16 flex w-full flex-col items-start gap-5 px-4 font-medium sm:mt-24 lg:mt-0 lg:flex-row lg:justify-between">
+        <div className="flex w-full flex-col items-start gap-5 font-medium lg:flex-row lg:justify-between">
           {[infoColumns.slice(0, 2), infoColumns.slice(2, 4)].map((group, groupIndex) => (
             <div
               key={groupIndex}
