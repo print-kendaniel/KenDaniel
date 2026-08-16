@@ -52,7 +52,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(to top, rgba(43, 12, 20, 0.8), rgba(43, 12, 20, 0.1) 45%, rgba(43, 12, 20, 0.4));
+  background: linear-gradient(to top, rgba(10, 10, 15, 0.8), rgba(10, 10, 15, 0.1) 45%, rgba(10, 10, 15, 0.4));
   opacity: 0;
 }
 
@@ -98,7 +98,7 @@
   letter-spacing: -0.03em;
   line-height: 1;
   color: #fff;
-  text-shadow: 0 2px 24px rgba(43, 12, 20, 0.5);
+  text-shadow: 0 2px 24px rgba(10, 10, 15, 0.5);
   pointer-events: none;
   will-change: opacity, transform;
 }

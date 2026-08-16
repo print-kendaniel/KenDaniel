@@ -19,8 +19,8 @@ export default async function OpengraphImage({ params }: { params: Promise<{ slu
           flexDirection: "column",
           justifyContent: "center",
           padding: 80,
-          backgroundColor: "#f7e7ce",
-          color: "#2b0c14",
+          backgroundColor: "#ffffff",
+          color: "#0a0a0f",
           fontSize: 56,
           fontWeight: 600,
         }}

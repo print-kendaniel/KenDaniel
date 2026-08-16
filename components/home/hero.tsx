@@ -107,7 +107,7 @@ export function Hero({ projectsCount, latestProject }: { projectsCount: number; 
             <div className="max-w-xl lg:col-span-7">
             <motion.div variants={copyVariants}>
               <DecryptText
-                lines={["Computer Engineer, Class of 2026"]}
+                lines={["Associate Software Engineer"]}
                 as="p"
                 gateOnReady
                 delay={300}

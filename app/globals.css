@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  /* Champagne Mist + Burgundy theme */
-  --background: #f7e7ce;
-  --foreground: #2b0c14;
+  /* Accenture theme: violet/purple, black, and white */
+  --background: #ffffff;
+  --foreground: #0a0a0f;
 
-  --color-ink: #80011f;
-  --color-muted: #8a7566;
-  --color-subtle: #b8a893;
-  --color-line: #e8d4b0;
-  --color-surface: #fdf6ea;
-  --color-surface-2: #f0dfc0;
-  --color-accent: #80011f;
-  --color-accent-from: #f7e7ce;
-  --color-accent-to: #80011f;
-  --color-hero-from: #f7e7ce;
-  --color-hero-to: #e0c9a0;
+  --color-ink: #0a0a0a;
+  --color-muted: #6e6b78;
+  --color-subtle: #9d99a8;
+  --color-line: #e5e2ec;
+  --color-surface: #f7f5fb;
+  --color-surface-2: #ece7f6;
+  --color-accent: #a100ff;
+  --color-accent-from: #ffffff;
+  --color-accent-to: #a100ff;
+  --color-hero-from: #ffffff;
+  --color-hero-to: #e4d4fb;
 
   --radius-pill: 9999px;
   --radius-card: 2rem;

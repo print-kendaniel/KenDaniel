@@ -34,12 +34,12 @@ export function StaggeredMenu({
   onClose,
   onNavigate,
   position = "right",
-  colors = ["#80011f", "#f7e7ce"],
+  colors = ["#a100ff", "#f7f5fb"],
   items,
   socialItems = [],
   displaySocials = true,
   displayItemNumbering = true,
-  accentColor = "#80011f",
+  accentColor = "#a100ff",
 }: StaggeredMenuProps) {
   const panelRef = useRef<HTMLElement>(null);
   const preLayersRef = useRef<HTMLDivElement>(null);

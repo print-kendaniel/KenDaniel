@@ -64,8 +64,8 @@ export function NavOverlay({ isOpen, onClose }: NavOverlayProps) {
         onNavigate={handleNavigate}
         items={navItems}
         socialItems={socialItems}
-        colors={["#80011f", "#e0c9a0", "#f7e7ce"]}
-        accentColor="#80011f"
+        colors={["#0a0a0a", "#7500c0", "#a100ff"]}
+        accentColor="#a100ff"
       />
     </div>
   );

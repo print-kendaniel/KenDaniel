@@ -28,27 +28,27 @@
   right: 0;
   width: clamp(260px, 38vw, 420px);
   height: 100%;
-  background: var(--color-surface, #fdf6ea);
-  color: var(--foreground, #2b0c14);
+  background: var(--color-surface, #f7f5fb);
+  color: var(--foreground, #0a0a0f);
   display: flex;
   flex-direction: column;
   padding: 6em 2em 2em 2em;
   overflow-y: auto;
   z-index: 10;
-  box-shadow: -20px 0 60px -20px rgba(43, 12, 20, 0.35);
+  box-shadow: -20px 0 60px -20px rgba(10, 10, 15, 0.35);
 }
 
 [data-position="left"].staggered-menu-panel {
   right: auto;
   left: 0;
-  box-shadow: 20px 0 60px -20px rgba(43, 12, 20, 0.35);
+  box-shadow: 20px 0 60px -20px rgba(10, 10, 15, 0.35);
 }
 
 .sm-close {
   position: absolute;
   top: 2em;
   right: 2em;
-  border: 1px solid var(--color-line, #e8d4b0);
+  border: 1px solid var(--color-line, #e5e2ec);
   border-radius: var(--radius-control, 0.875rem);
   background: transparent;
   padding: 0.5em 1em;
@@ -56,14 +56,14 @@
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--color-muted, #8a7566);
+  color: var(--color-muted, #6e6b78);
   cursor: pointer;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .sm-close:hover {
-  color: var(--foreground, #2b0c14);
-  border-color: var(--sm-accent, var(--color-accent, #80011f));
+  color: var(--foreground, #0a0a0f);
+  border-color: var(--sm-accent, var(--color-accent, #a100ff));
 }
 
 .sm-panel-inner {
@@ -85,7 +85,7 @@
   margin: 0;
   font-size: 1rem;
   font-weight: 500;
-  color: var(--sm-accent, var(--color-accent, #80011f));
+  color: var(--sm-accent, var(--color-accent, #a100ff));
 }
 
 .sm-socials-list {
@@ -102,7 +102,7 @@
 .sm-socials-link {
   font-size: 1.1rem;
   font-weight: 500;
-  color: var(--foreground, #2b0c14);
+  color: var(--foreground, #0a0a0f);
   text-decoration: none;
   opacity: 1;
   transition: color 0.3s ease, opacity 0.3s ease;
@@ -114,7 +114,7 @@
 
 .sm-socials-link:hover,
 .sm-socials-link:focus-visible {
-  color: var(--sm-accent, var(--color-accent, #80011f));
+  color: var(--sm-accent, var(--color-accent, #a100ff));
   opacity: 1;
 }
 
@@ -140,7 +140,7 @@
   text-align: left;
   background: none;
   border: none;
-  color: var(--foreground, #2b0c14);
+  color: var(--foreground, #0a0a0f);
   font-weight: 600;
   font-size: clamp(2rem, 7vw, 3rem);
   cursor: pointer;
@@ -153,7 +153,7 @@
 }
 
 .sm-panel-item:hover {
-  color: var(--sm-accent, var(--color-accent, #80011f));
+  color: var(--sm-accent, var(--color-accent, #a100ff));
 }
 
 .sm-panel-itemLabel {
@@ -174,7 +174,7 @@
   right: 0.2em;
   font-size: 14px;
   font-weight: 400;
-  color: var(--sm-accent, var(--color-accent, #80011f));
+  color: var(--sm-accent, var(--color-accent, #a100ff));
   letter-spacing: 0;
   pointer-events: none;
   user-select: none;
