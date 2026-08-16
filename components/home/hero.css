@@ -1,0 +1,85 @@
+@keyframes hero-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.hero-marquee-track {
+  animation: hero-marquee 30s linear infinite;
+}
+
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(4vh) scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-line {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.hero-anim-fade-in {
+  animation: hero-fade-in 1.2s ease-out both;
+}
+
+.hero-anim-rise-in {
+  animation: hero-rise-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 300ms;
+}
+
+.hero-anim-fade-up {
+  animation: hero-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-anim-line {
+  transform-origin: left;
+  animation: hero-line 1.1s cubic-bezier(0.76, 0, 0.24, 1) both;
+  animation-delay: 1200ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-marquee-track {
+    animation: none;
+  }
+
+  .hero-anim-fade-in,
+  .hero-anim-rise-in,
+  .hero-anim-fade-up,
+  .hero-anim-line {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+  }
+}
