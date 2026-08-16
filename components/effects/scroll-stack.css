@@ -42,27 +42,6 @@
   gap: 1.5rem;
 }
 
-.scroll-stack-card.project-stack-card {
-  flex-direction: column;
-  align-items: stretch;
-  padding: 0;
-  height: 26rem;
-  overflow: hidden;
-  clip-path: inset(14% 0 14% 0 round 2rem);
-  opacity: 0.72;
-  transition: clip-path 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
-}
-
-.scroll-stack-card.project-stack-card[data-active="true"] {
-  clip-path: inset(0 0 0 0 round 2rem);
-  opacity: 1;
-}
-
-.scroll-stack-static .project-stack-card {
-  clip-path: inset(0 0 0 0 round 2rem);
-  opacity: 1;
-}
-
 .scroll-stack-end {
   width: 100%;
   height: 1px;

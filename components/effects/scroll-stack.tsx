@@ -65,7 +65,6 @@ export function ScrollStack({
   const lenisRef = useRef<Lenis | null>(null);
   const cardsRef = useRef<HTMLElement[]>([]);
   const lastTransformsRef = useRef<Map<number, CardTransform>>(new Map());
-  const lastActiveRef = useRef<Map<number, boolean>>(new Map());
   const isUpdatingRef = useRef(false);
   const reducedMotion = usePrefersReducedMotion();
 
@@ -100,9 +99,8 @@ export function ScrollStack({
     const endElement = scrollerRef.current?.querySelector<HTMLElement>(".scroll-stack-end");
     const endElementTop = endElement ? getElementOffset(endElement) : 0;
 
-    // The topmost card whose pin has triggered is the one currently in
-    // focus — computed once per tick and reused for both the blur falloff
-    // and the active-card marker (drives the CSS clip-path focus effect).
+    // The topmost card whose pin has triggered drives the blur falloff —
+    // computed once per tick instead of once per card.
     let topCardIndex = 0;
     for (let j = 0; j < cardsRef.current.length; j++) {
       const jCardTop = getElementOffset(cardsRef.current[j]);
@@ -127,12 +125,6 @@ export function ScrollStack({
       let blur = 0;
       if (blurAmount && i < topCardIndex) {
         blur = Math.max(0, (topCardIndex - i) * blurAmount);
-      }
-
-      const isActive = i === topCardIndex;
-      if (lastActiveRef.current.get(i) !== isActive) {
-        card.dataset.active = String(isActive);
-        lastActiveRef.current.set(i, isActive);
       }
 
       let translateY = 0;
@@ -230,7 +222,6 @@ export function ScrollStack({
     const cards = Array.from(scroller.querySelectorAll<HTMLElement>(".scroll-stack-card"));
     cardsRef.current = cards;
     const transformsCache = lastTransformsRef.current;
-    const activeCache = lastActiveRef.current;
 
     cards.forEach((card, i) => {
       if (i < cards.length - 1) card.style.marginBottom = `${itemDistance}px`;
@@ -251,7 +242,6 @@ export function ScrollStack({
       stackCompletedRef.current = false;
       cardsRef.current = [];
       transformsCache.clear();
-      activeCache.clear();
       isUpdatingRef.current = false;
     };
   }, [itemDistance, reducedMotion, setupLenis, updateCardTransforms]);

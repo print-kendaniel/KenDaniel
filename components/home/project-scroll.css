@@ -1,0 +1,29 @@
+.project-scroll-track {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.project-scroll-track::-webkit-scrollbar {
+  display: none;
+}
+
+.project-scroll-card {
+  clip-path: inset(15% 0 15% 0 round 2rem);
+  transition: clip-path 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  scroll-snap-align: center;
+}
+
+.project-scroll-card[data-active="true"] {
+  clip-path: inset(0 0 0 0 round 2rem);
+}
+
+.project-scroll-card__content {
+  opacity: 0.55;
+  filter: blur(6px);
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.project-scroll-card[data-active="true"] .project-scroll-card__content {
+  opacity: 1;
+  filter: blur(0);
+}
