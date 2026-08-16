@@ -1,6 +1,6 @@
 import { listProjects } from "@/lib/firebase/firestore";
 import { Hero } from "@/components/home/hero";
-import { CreateBand } from "@/components/home/create-band";
+import { ScrollStroke } from "@/components/home/scroll-stroke";
 import { PortfolioSection } from "@/components/home/portfolio-section";
 import { ServicesSection } from "@/components/home/services-section";
 import { StatsSection } from "@/components/home/stats-section";
@@ -24,7 +24,7 @@ export default async function HomePage() {
         <h2>{profile.title}</h2>
         <p>{profile.location}</p>
       </ScrollExpand>
-      <CreateBand />
+      <ScrollStroke />
       <ParallaxGallery />
       <PortfolioSection projects={allProjects} />
       <ServicesSection />

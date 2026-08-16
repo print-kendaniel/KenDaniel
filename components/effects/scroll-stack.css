@@ -42,6 +42,14 @@
   gap: 1.5rem;
 }
 
+.scroll-stack-card.project-stack-card {
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  height: 26rem;
+  overflow: hidden;
+}
+
 .scroll-stack-end {
   width: 100%;
   height: 1px;
