@@ -40,8 +40,8 @@ export function ScrollStroke() {
       <div className="relative z-10 mt-42 flex w-fit flex-col items-center justify-center gap-5 text-center">
         <RevealFade>
           <h2 className="text-7xl font-medium tracking-[-0.08em] lg:text-9xl">
-            Every Line, <br /> Written With <br />
-            Intention
+            Every Solution, <br /> Engineered With <br />
+            Precision
           </h2>
         </RevealFade>
         <RevealFade delay={100}>

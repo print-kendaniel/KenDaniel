@@ -35,10 +35,10 @@ export function Hero() {
         <Image
           src="/hero/character.png"
           alt={profile.name}
-          width={321}
-          height={754}
+          width={666}
+          height={375}
           priority
-          className="h-[64vh] w-auto object-contain sm:h-[76vh]"
+          className="h-auto w-[85vw] max-w-md object-contain sm:max-w-xl"
         />
       </div>
 
