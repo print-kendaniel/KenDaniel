@@ -81,8 +81,7 @@ function LinePath({
   scrollYProgress: MotionValue<number>;
   reducedMotion: boolean;
 }) {
-  const pathLength = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
-  const strokeDashoffset = useTransform(pathLength, (value) => 1 - value);
+  const strokeDashoffset = useTransform(scrollYProgress, (value) => 1 - value);
 
   return (
     <svg
@@ -100,7 +99,7 @@ function LinePath({
         style={
           reducedMotion
             ? { pathLength: 1, strokeDashoffset: 0 }
-            : { pathLength, strokeDashoffset }
+            : { pathLength: scrollYProgress, strokeDashoffset }
         }
       />
     </svg>
