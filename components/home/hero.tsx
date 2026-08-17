@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { profile } from "@/lib/content/profile";
-import { HeroMacbook } from "@/components/home/hero-macbook";
 import "./hero.css";
 
 const nameParts = profile.name.split(" ");
@@ -9,14 +9,14 @@ const marqueeText = `${marqueeFirst} — ${marqueeLast}`;
 
 /**
  * Full-viewport editorial hero adapted from the "Skiper 19"-style
- * marquee + portrait-cutout layout: a giant looping name behind a laptop
- * mockup playing an ambient looping video, a rule line, and a two-block
- * footer. No CTA here by design — the global `Header` (already absolute +
- * white text on this page) supplies navigation, so this section isn't
- * duplicating a second brand/menu. The backdrop is a layered radial glow
- * on near-black (not a flat linear gradient) plus a faint grain texture,
- * matching the restrained, low-opacity "watermark" treatment already used
- * in the Footer instead of a loud, flat AI-gradient look.
+ * marquee + portrait-cutout layout: a giant looping name behind a
+ * character cutout, a rule line, and a two-block footer. No CTA here by
+ * design — the global `Header` (already absolute + white text on this
+ * page) supplies navigation, so this section isn't duplicating a second
+ * brand/menu. The backdrop is a layered radial glow on near-black (not a
+ * flat linear gradient) plus a faint grain texture, matching the
+ * restrained, low-opacity "watermark" treatment already used in the
+ * Footer instead of a loud, flat AI-gradient look.
  */
 export function Hero() {
   return (
@@ -33,8 +33,15 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="hero-anim-rise-in pointer-events-none absolute inset-x-0 bottom-[6dvh] z-20 flex justify-center sm:bottom-[8dvh]">
-        <HeroMacbook />
+      <div className="hero-anim-rise-in pointer-events-none absolute inset-x-0 bottom-0 z-20 flex justify-center">
+        <Image
+          src="/hero/character.png"
+          alt={profile.name}
+          width={321}
+          height={754}
+          priority
+          className="h-[64dvh] w-auto object-contain sm:h-[76dvh]"
+        />
       </div>
 
       <div className="hero-anim-line absolute inset-x-6 bottom-24 z-10 h-0.5 bg-white sm:inset-x-10 sm:bottom-28" />
