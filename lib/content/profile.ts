@@ -76,6 +76,8 @@ export const profile = {
     ],
   },
   certifications: [
+    "Google AI Essentials Specialization – Google, 2026",
+    "AI Fundamentals – Google, 2026",
     "Computer System Servicing NC II – TESDA National Certification",
     "Safety Officer 2 (SO2) – DOLE-accredited Safety Officer Training",
     "Lean Six Sigma Yellow Belt – Council for Six Sigma",
