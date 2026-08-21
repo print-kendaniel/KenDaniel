@@ -2,16 +2,11 @@ import type { NextConfig } from "next";
 
 const contentSecurityPolicy = [
   "default-src 'self'",
-  // 'wasm-unsafe-eval' is required by @splinetool/runtime (the hero's 3D
-  // scene), which compiles WebAssembly for its renderer.
-  "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'",
+  "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https://storage.googleapis.com https://res.cloudinary.com",
   "font-src 'self' data:",
-  // *.spline.design: fetching the .splinecode scene file and its assets.
-  "connect-src 'self' https://*.googleapis.com https://securetoken.googleapis.com https://*.spline.design",
-  // Spline's renderer runs in a blob-sourced Web Worker.
-  "worker-src 'self' blob:",
+  "connect-src 'self' https://*.googleapis.com https://securetoken.googleapis.com",
   "frame-ancestors 'none'",
   "form-action 'self'",
   "base-uri 'self'",
