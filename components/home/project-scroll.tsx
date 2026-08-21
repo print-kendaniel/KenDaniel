@@ -7,16 +7,9 @@ import { DecryptText } from "@/components/effects/decrypt-text";
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion";
 import { LogoMark, ArrowUpRight } from "@/components/ui/icons";
 import { TagChip } from "@/components/ui/tag-chip";
+import { getProjectCategory } from "@/lib/content/project-category";
 import type { Project } from "@/types/project";
 import "./project-scroll.css";
-
-/** Presentation-only category label per project — not a stored field, just a display hint. Mirrors project-card.tsx's mapping. */
-const CATEGORY_BY_SLUG: Record<string, string> = {
-  "trustmebro-ai": "Cybersecurity",
-  swinewatch: "Computer Vision",
-  "digital-ears": "Signal Processing",
-  "recruitment-workflow-automation": "Automation",
-};
 
 const CARD_CLASS = "w-[85vw] shrink-0 sm:w-[26rem]";
 
@@ -87,7 +80,7 @@ function ProjectScrollCard({
   isActive: boolean;
   className: string;
 }) {
-  const category = CATEGORY_BY_SLUG[project.slug] ?? project.techStack[0] ?? "Project";
+  const category = getProjectCategory(project);
 
   return (
     <Link
