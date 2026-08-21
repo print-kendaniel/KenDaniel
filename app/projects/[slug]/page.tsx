@@ -10,7 +10,7 @@ import { TagChip } from "@/components/ui/tag-chip";
 import { PillButton } from "@/components/ui/pill-button";
 import { LogoMark } from "@/components/ui/icons";
 import { getProjectCategory } from "@/lib/content/project-category";
-import { ScrollProgressBar } from "@/components/projects/scroll-progress-bar";
+import { ScrollProgressBar } from "@/components/effects/scroll-progress-bar";
 
 interface Props {
   params: Promise<{ slug: string }>;
